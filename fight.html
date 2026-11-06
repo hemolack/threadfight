@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thread Fight</title>
+<link rel="icon" href="icons/icon32.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="fight.css">
+</head>
+<body>
+<main class="stage">
+  <header class="top">
+    <div class="brand small"><img src="icons/icon32.png" alt="" width="28" height="28"><strong>Thread Fight</strong></div>
+    <div class="source" id="source"></div>
+    <button class="ghost" id="openSettings" type="button">Settings</button>
+  </header>
+
+  <section id="progress" class="progress card">
+    <div class="spinner"></div>
+    <div><div id="progressTitle">Loading…</div><div id="progressSub" class="muted"></div></div>
+    <button class="ghost" id="cancel" type="button" hidden>Cancel</button>
+  </section>
+
+  <section id="error" class="card errorbox" hidden>
+    <div id="errorMsg"></div>
+    <div class="actions">
+      <button class="primary" id="retry" type="button">Try again</button>
+      <button class="ghost" id="errSettings" type="button">Open settings</button>
+    </div>
+  </section>
+
+  <section id="playerWrap" class="player" hidden>
+    <div class="screen">
+      <canvas id="screen" width="1280" height="720"></canvas>
+      <button id="bigPlay" class="bigplay" type="button" aria-label="Play">▶</button>
+    </div>
+    <div class="controls">
+      <button id="play" type="button">Play</button>
+      <input id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek">
+      <span id="time" class="time">0:00 / 0:00</span>
+      <button id="mute" class="ghost" type="button">Sound on</button>
+    </div>
+    <div class="actions export">
+      <button class="primary" id="download" type="button">Download MP4</button>
+      <button class="ghost" id="downloadJson" type="button">Fight script (.json)</button>
+      <button class="ghost" id="edit" type="button">Edit script</button>
+      <button class="ghost" id="rereferee" type="button">Re-referee</button>
+      <span id="exportStatus" class="status"></span>
+    </div>
+    <div class="bar" id="exportBar" hidden><i></i></div>
+  </section>
+
+  <section id="details" class="card" hidden>
+    <h2>Scorecard</h2>
+    <ol id="beats" class="beats"></ol>
+    <p id="verdictLine" class="verdict"></p>
+    <details>
+      <summary>What was sent to the model</summary>
+      <p class="muted" id="sentMeta"></p>
+      <pre id="sentText"></pre>
+    </details>
+  </section>
+
+  <dialog id="editor">
+    <form method="dialog">
+      <h2>Edit fight script</h2>
+      <p class="muted">Change rulings, points or the verdict, then apply. Kinds: claim, evidence, rebuttal, trap, bait, fallacy, ad_hominem, gish_gallop, concession, exit. Outcomes: landed, blocked, countered, missed, foul, none.</p>
+      <textarea id="scriptText" spellcheck="false"></textarea>
+      <div class="actions"><button class="primary" id="apply" value="apply">Apply</button><button class="ghost" value="cancel">Cancel</button><span id="editStatus" class="status err"></span></div>
+    </form>
+  </dialog>
+</main>
+<script src="lib/engine.js"></script>
+<script src="lib/sfx.js"></script>
+<script src="lib/mp4-muxer.js"></script>
+<script src="lib/encode.js"></script>
+<script src="lib/referee.js"></script>
+<script src="fight.js"></script>
+</body>
+</html>

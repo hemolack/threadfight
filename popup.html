@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thread Fight</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="ui.css">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div class="pop">
+  <header class="phead">
+    <img src="icons/icon32.png" alt="" width="26" height="26">
+    <strong>Thread Fight</strong>
+    <button class="link" id="settings" type="button">Settings</button>
+  </header>
+
+  <!-- first run: required disclosure + consent -->
+  <section id="consent" class="panel" hidden>
+    <h2>Before your first fight</h2>
+    <p>When you start a fight, Thread Fight reads the comments <b>currently showing</b> on the post you pick and sends their text to the AI provider you set up in Settings (Anthropic, OpenAI, or your own server), so it can referee the argument.</p>
+    <ul>
+      <li>Names are replaced with “User 1, User 2…” before anything is sent.</li>
+      <li>Nothing is sent to the makers of Thread Fight. There is no Thread Fight server.</li>
+      <li>Your API key and settings stay in this browser.</li>
+    </ul>
+    <div class="row2">
+      <button class="primary" id="agree" type="button">I agree</button>
+      <button class="ghost" id="decline" type="button">Not now</button>
+    </div>
+    <p class="fine"><a href="privacy.html" target="_blank">Privacy policy</a></p>
+  </section>
+
+  <section id="setup" class="panel" hidden>
+    <h2>Choose your referee</h2>
+    <p>Add an API key for Claude or ChatGPT, or point Thread Fight at a local model, then come back here.</p>
+    <button class="primary" id="openSetup" type="button">Open settings</button>
+  </section>
+
+  <section id="wrongSite" class="panel" hidden>
+    <h2>Open a post first</h2>
+    <p>Go to a Facebook, LinkedIn or Reddit post, open its comments, then click Thread Fight again.</p>
+  </section>
+
+  <section id="loading" class="panel"><div class="spin"></div><p class="muted center">Reading the page…</p></section>
+
+  <section id="pick" class="panel" hidden>
+    <h2 id="pickTitle">Pick the argument</h2>
+    <div id="threads" class="threads" role="radiogroup" aria-label="Comment threads on this page"></div>
+    <p class="notice"><b>Only visible comments are counted.</b> Thread Fight doesn't open anything for you, so click “View more comments”, open the replies and expand any “See more” you want included before you start.</p>
+    <div class="row2">
+      <button class="primary" id="start" type="button">Start the fight</button>
+      <button class="ghost" id="refresh" type="button" title="Re-read the page after opening more comments">Re-scan</button>
+    </div>
+  </section>
+
+  <section id="none" class="panel" hidden>
+    <h2>No comments found</h2>
+    <p>Thread Fight couldn't find any open comments on this page. Open a post's comments and try again, or use the visible page text instead (less precise).</p>
+    <div class="row2">
+      <button class="ghost" id="rescan2" type="button">Re-scan</button>
+      <button class="ghost" id="useRaw" type="button">Use visible page text</button>
+    </div>
+  </section>
+
+  <p id="err" class="status err" hidden></p>
+</div>
+<script src="lib/referee.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

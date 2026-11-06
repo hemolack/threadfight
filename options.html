@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thread Fight — Settings</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="ui.css">
+</head>
+<body>
+<main class="wrap">
+  <header class="brand">
+    <img src="icons/icon48.png" alt="" width="40" height="40">
+    <div>
+      <h1>Thread Fight</h1>
+      <p>Choose the LLM that referees each argument.</p>
+    </div>
+  </header>
+
+  <section class="card">
+    <h2>Referee</h2>
+    <div class="providers" id="providers"></div>
+
+    <label class="field">
+      <span>API key <em id="keyHint"></em></span>
+      <div class="row">
+        <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-…">
+        <button type="button" class="ghost" id="toggleKey">Show</button>
+      </div>
+    </label>
+
+    <label class="field">
+      <span>Base URL</span>
+      <input id="baseUrl" type="url" spellcheck="false">
+      <small id="urlHint"></small>
+    </label>
+
+    <label class="field">
+      <span>Model</span>
+      <div class="row">
+        <input id="model" list="modelList" spellcheck="false">
+        <datalist id="modelList"></datalist>
+        <button type="button" class="ghost" id="fetchModels">Fetch models</button>
+      </div>
+    </label>
+
+    <div class="actions">
+      <button type="button" id="save" class="primary">Save</button>
+      <button type="button" id="test" class="ghost">Test connection</button>
+      <span id="status" class="status" role="status"></span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Capture</h2>
+    <p class="muted">Thread Fight only reads the comments currently showing on the post. Open the replies and “See more” text you want included before you start a fight.</p>
+    <label class="field narrow">
+      <span>Maximum thread size sent to the model (characters)</span>
+      <input id="maxChars" type="number" min="5000" max="400000" step="5000">
+    </label>
+  </section>
+
+  <section class="card note">
+    <h2>Privacy</h2>
+    <p>Your key is stored in this browser's extension storage and is sent only to the provider above. Commenter names are replaced with “User 1, User 2…” before the thread is sent to the model, and the video shows only Red and Blue. There is no Thread Fight server. <a href="privacy.html" target="_blank">Privacy policy</a></p>
+    <p>Local servers: Ollama blocks requests from browser extensions unless you start it with <code>OLLAMA_ORIGINS="chrome-extension://*"</code>. LM Studio needs “Enable CORS” turned on. If the server is on another machine, Chrome asks you to allow that address when you click Save.</p>
+  </section>
+</main>
+<script src="lib/referee.js"></script>
+<script src="options.js"></script>
+</body>
+</html>
