@@ -1,4 +1,4 @@
-# Thread Fight: Chrome extension (v1.1.0)
+# Thread Fight: Chrome extension (v1.2.0)
 
 Thread Fight turns a Facebook, LinkedIn or Reddit comment-section argument into an animated martial-arts fight, refereed by an LLM you choose. You can download the result as an MP4.
 
